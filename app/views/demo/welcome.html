@@ -1,4 +1,18 @@
-<li ng-repeat="phone in phones">
-    <span>{{phone.name}}</span>
-    <p>{{phone.snippet}}</p>
-</li>
+<table>
+    <tr>
+        <th>id</th>
+        <th>rev</th>
+        <th>descriptionField</th>
+        <th>nameField</th>
+        <th>temperatureField</th>
+        <th>numberField</th>
+    </tr>
+    <tr ng-repeat="result in results">
+        <td>{{result._id}}</td>
+        <td>{{result._rev}}</td>
+        <td>{{result.descriptionField}}</td>
+        <td>{{result.nameField}}</td>
+        <td>{{result.temperatureField}}</td>
+        <td>{{result.numberField}}</td>
+    </tr>
+</table>

@@ -27,7 +27,7 @@ var cloudantService = function () {
     };
 
     // query using the index
-    this.findDocument = function(dbname, query, callback) {
+    this.createIndex = function() {
 
         this.dbname = dbname || cldtConfig.default_dbname;
         var db = cloudant.db.use(this.dbname);
@@ -49,24 +49,25 @@ var cloudantService = function () {
             doc = data;
             // callback(err, data);
         });
+    };
 
-        var queryJson = {
-            "selector": {
-                "numberField": {"$gt": 2}
-            },
-            "fields": ["_id", "_rev", "descriptionField", "nameField","temperatureField","numberField"],
-            "sort": [{"numberField": "asc"}],
-            "limit": 10,
-            "skip": 0
-        };
+    // query using the index
+    // this.findDocument = function(dbname, queryJson, callback) {
+    this.findDocument = function(dbname, queryJson, callback) {
+
+        this.dbname = dbname || cldtConfig.default_dbname;
+        var db = cloudant.db.use(this.dbname);
+
+
 
         db.find(queryJson,function(err, data) {
             console.log('Error:', err);
             console.log('Data:', data);
             // keep a copy of the doc so we know its revision token
             doc = data;
-            // callback(err, data);
+            callback(err, data);
         });
+
     };
 }
 
